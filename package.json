@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "",
-    "test": "jest --findRelatedTests $INIT_CWD/*.test.js"
+    "start": "node .",
+    "test-mac": "jest --findRelatedTests $INIT_CWD/*.test.js",
+    "test-win": "jest -c %INIT_CWD%\\jest.config.js || exit 0"
   },
   "keywords": [],
   "author": "",
