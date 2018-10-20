@@ -2,7 +2,7 @@ const readline = require('readline')
 const fsPromises = require('fs').promises
 
 const init = (id, url) => {
-  const name = url.split('/').splice(-3, 3)[0]
+  const name = url.split('/')[4]
   fsPromises.mkdir(`./src/${id}`).then(() => {
     fsPromises.open(`./src/${id}/${name}.js`, 'a')
     fsPromises.writeFile(
