@@ -32,6 +32,10 @@ test('"", ".*.*"', () => {
   expect(solution('', '.*')).toEqual(true)
 })
 
+test('"aa", "**aa"', () => {
+  expect(solution('aa', '**aa')).toEqual(false)
+})
+
 // after oj
 
 test('"aab", "c*a*b"', () => {
