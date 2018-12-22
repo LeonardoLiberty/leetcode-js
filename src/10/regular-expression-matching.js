@@ -1,3 +1,4 @@
+//  ------------ my original solution ------------------------
 /**
  * @param {string} s
  * @param {string} p
@@ -68,7 +69,7 @@ function match (source, index, node) {
  * @param {string} p
  * @return {boolean}
  */
-var isMatch = function (s, p) {
+var isMatch_nfa = function (s, p) {
 // Nfa Idea
 // 1. Loop s to do state/position transition exactly like in NFA.
 // 2. States here means valid positions in p that can be used to compare
@@ -119,6 +120,61 @@ function calculateValidStates (states, pos, p) {
       calculateValidStates(states, pos + 2, p)
     }
   }
+}
+
+//  ------------ recursion -----------------------------
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+var isMatch_rec = function (s, p) {
+  if (p.length === 0) return s.length === 0
+  if (p[0] === '*' || p.indexOf('**') !== -1) return false
+
+  var firstMatch = s[0] !== undefined && (s[0] === p[0] || p[0] === '.')
+  if (p[1] === '*') {
+    return isMatch(s, p.substr(2)) ||
+      (firstMatch && isMatch(s.substr(1), p))
+  } else {
+    return firstMatch && isMatch(s.substr(1), p.substr(1))
+  }
+}
+
+//  ------------ DP (Using space to gain time) -----------------
+//       can just be regarded as advanced recursion
+var isMatch = function (s, p) {
+  if (p[0] === '*' || p.indexOf('**') !== -1) return false
+
+  // init cache (s.length * p.length, all -1)
+  let cache = []
+  for (let i = 0; i <= s.length; ++i) {
+    let cacheRow = []
+    for (let j = 0; j <= p.length; ++j) {
+      cacheRow.push(-1)
+    }
+    cache.push(cacheRow)
+  }
+
+  // dp (i, j) === isMatch(s.substr(i), p.substr(j))
+  function dp (i, j) {
+    // the same as if (p.length === 0) return s.length === 0
+    if (j === p.length) return i === s.length
+    if (cache[i][j] !== -1) return cache[i][j]
+
+    var firstMatch = s[i] !== undefined && (s[i] === p[j] || p[j] === '.')
+    var result
+    if (p[j + 1] === '*') {
+      result = dp(i, j + 2) || (firstMatch && dp(i + 1, j))
+    } else {
+      result = firstMatch && dp(i + 1, j + 1)
+    }
+    cache[i][j] = result
+    return result
+  }
+
+  return dp(0, 0)
 }
 
 module.exports = isMatch
