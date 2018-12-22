@@ -2,7 +2,7 @@
  * @param {number[]} height
  * @return {number}
  */
-var maxArea = function (height) {
+var maxArea_BF = function (height) {
   var len = height.length
   var leftHeight = 0
   var rightHeight = 0
@@ -24,6 +24,37 @@ var maxArea = function (height) {
         rightHeight = height[j]
       }
     }
+  }
+  return max
+}
+
+//  -------- better O(n) solution ----------------
+//  proof of the correctness
+//  https://leetcode.com/problems/container-with-most-water/discuss/6099/Yet-another-way-to-see-what-happens-in-the-O(n)-algorithm
+
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function (height) {
+  let left = 0
+  let right = height.length - 1
+  const calArea = () =>
+    (right - left) * Math.min(height[left], height[right])
+  let max = calArea(left, right)
+
+  while (left < right) {
+    if (height[left] < height[right]) {
+      left++
+    } else if (height[left] > height[right]) {
+      right--
+    } else {
+      // height[left] === height[right] case
+      left++
+      right--
+    }
+    let newMax = calArea()
+    if (newMax > max) { max = newMax }
   }
   return max
 }
