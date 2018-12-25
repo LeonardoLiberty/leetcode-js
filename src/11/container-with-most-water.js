@@ -2,7 +2,7 @@
  * @param {number[]} height
  * @return {number}
  */
-var maxArea_BF = function (height) {
+var maxAreaBF = function (height) {
   var len = height.length
   var leftHeight = 0
   var rightHeight = 0

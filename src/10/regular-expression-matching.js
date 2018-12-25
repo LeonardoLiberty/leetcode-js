@@ -93,7 +93,6 @@ var isMatch_nfa = function (s, p) {
     // state transition
     let newStates = new Set()
     for (let state of states) {
-
       // only non-dead state should be updated
       if (p[state] === char || p[state] === '.') {
         calculateValidStates(newStates, state + 1, p)
