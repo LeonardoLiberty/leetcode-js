@@ -16,7 +16,7 @@ const init = (id, url) => {
       `/* eslint-env jest */\nimport solution from './${name}.js'\n\ntest('test name', () => {\n  expect(solution(para)).toEqual()\n})\n`
     )
   }).then(() => {
-    console.log(`\n\tcd ./src/${id} : go to problem directory.\n\n\tnpm run test-[mac|win] : run the test.\n\nInitialization finishes and happy hacks >`)
+    console.log(`\n\tcd ./src/${id} : go to problem directory.\n\n\tnpm run test: run the test.\n\nInitialization finishes and happy hacks >`)
   }).catch(error => {
     console.error(error)
   })
