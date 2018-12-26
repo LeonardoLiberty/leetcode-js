@@ -1,4 +1,5 @@
-const solution = require('./longest-substring-without-repeating-characters.js')
+/* eslint-env jest */
+import solution from './longest-substring-without-repeating-characters'
 
 let string = 'abcabcbb'
 test(string, () => {
