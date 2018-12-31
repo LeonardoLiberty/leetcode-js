@@ -1,4 +1,5 @@
-const solution = require('./zigzag-conversion.js')
+/* eslint-env jest */
+import solution from './zigzag-conversion.js'
 
 test('PAYPALISHIRING', () => {
   expect(solution('PAYPALISHIRING', 3)).toEqual('PAHNAPLSIIGYIR')

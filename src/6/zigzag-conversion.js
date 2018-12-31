@@ -28,4 +28,4 @@ var convert = function (s, numRows) {
   return str
 }
 
-module.exports = convert
+export default convert
