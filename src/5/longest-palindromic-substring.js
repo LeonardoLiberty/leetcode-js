@@ -25,4 +25,4 @@ var longestPalindrome = function (s) {
   return s.substr(longestIndex[0], longestIndex[1])
 }
 
-module.exports = longestPalindrome
+export default longestPalindrome

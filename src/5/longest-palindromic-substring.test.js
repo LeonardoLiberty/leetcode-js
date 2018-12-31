@@ -1,4 +1,5 @@
-const solution = require('./problems.js')
+/* eslint-env jest */
+import solution from './expand-around-center'
 
 test('babad', () => {
   expect(solution('babad')).toEqual('bab')
