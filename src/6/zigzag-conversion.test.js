@@ -21,10 +21,6 @@ test('PAYPALISHIRING', () => {
   expect(solution('PAYPALISHIRING', 20)).toEqual('PAYPALISHIRING')
 })
 
-test('', () => {
+test(' 2', () => {
   expect(solution('', 2)).toEqual('')
-})
-
-test('abcde', () => {
-  expect(solution('abcde', 4)).toEqual('abced')
 })

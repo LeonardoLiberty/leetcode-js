@@ -4,7 +4,7 @@
  * @return {string}
  */
 var convert = function (s, numRows) {
-  if (numRows === 1) return s
+  if (numRows <= 1) return s
   const period = 2 * numRows - 2
   const times = Math.floor(s.length / period)
   const remainder = s.length % period
