@@ -1,4 +1,5 @@
-const solution = require('./palindrome-number.js')
+/* eslint-env jest */
+import solution from './palindrome-number.js'
 
 test('-222', () => {
   expect(solution(-222)).toEqual(false)

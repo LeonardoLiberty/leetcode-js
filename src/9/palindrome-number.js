@@ -14,4 +14,4 @@ var isPalindrome = function (x) {
   return oldX === y
 }
 
-module.exports = isPalindrome
+export default isPalindrome
