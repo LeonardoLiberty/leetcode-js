@@ -1,4 +1,5 @@
-const solution = require('./string-to-integer-atoi.js')
+// /* eslint-env jest */
+import solution from './string-to-integer-atoi.js'
 
 test('42', () => {
   expect(solution('42')).toEqual(42)

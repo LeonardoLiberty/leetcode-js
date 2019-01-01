@@ -5,41 +5,33 @@
 var myAtoi = function (str) {
   const MIN = -Math.pow(2, 31)
   const MAX = Math.pow(2, 31) - 1
-  let isNeg = false
+
   let re = 0
+  let sign = 1
+  let i = 0
+  // remove white space -- only ' '
+  while (str[i++] === ' ');
+  i--
 
-  // only space can be regarded as whitespace character
-  // hence can not use trim
-  for (let i = 0; i < str.length; ++i) {
-    // first non-space char
-    if (str[i] !== ' ') {
-      if (str[i] === '-') {
-        isNeg = true
-        str = str.substr(i + 1)
-      } else if (str[i] === '+') {
-        str = str.substr(i + 1)
-      } else if (str[i].charCodeAt(0) >= 48 &&
-        str[i].charCodeAt(0) <= 57) {
-        str = str.substr(i)
-      } else {
-        return re
-      }
-      break
+  // optional +/-
+  if (str[i] === '+') {
+    i++
+  } else if (str[i] === '-') {
+    i++
+    sign = -1
+  }
+
+  while (i < str.length) {
+    let num = str.charCodeAt(i++) - 48
+    if (num < 0 || num > 9) break
+
+    re = re * 10 + num
+    if (re > MAX) {
+      return sign === 1 ? MAX : MIN
     }
   }
 
-  for (let i = 0; i < str.length; ++i) {
-    let n = str[i].charCodeAt(0) - 48
-    if (n < 0 || n > 9) {
-      return isNeg ? -re : re
-    }
-
-    re = re * 10 + n
-    if (re > MAX || re < MIN) {
-      return isNeg ? MIN : MAX
-    }
-  }
-  return isNeg ? -re : re
+  return sign * re
 }
 
-module.exports = myAtoi
+export default myAtoi
