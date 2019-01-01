@@ -1,4 +1,5 @@
-const solution = require('./reverse-integer.js')
+/* eslint-env jest */
+import solution from './reverse-integer.js'
 
 test('123', () => {
   expect(solution(123)).toEqual(321)
