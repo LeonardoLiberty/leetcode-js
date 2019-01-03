@@ -1,4 +1,5 @@
-const solution = require('./regular-expression-matching.js')
+/* eslint-env jest */
+import solution from './regular-expression-matching.js'
 
 test('"aa", "a"', () => {
   expect(solution('aa', 'a')).toEqual(false)
