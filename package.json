@@ -1,7 +1,7 @@
 {
   "name": "leetcode-js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node --no-warnings app.js",
     "test": "cross-env-shell jest --rootDir $INIT_CWD"
   },
   "license": "MIT",
