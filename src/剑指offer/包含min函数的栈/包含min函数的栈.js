@@ -1,29 +1,18 @@
 let stack = []
-let sortList = []
-
-function insert (list, node) {
-  for (let i = 0; i < list.length; ++i) {
-    if (list[i] > node) {
-      list.splice(i, 0, node)
-      return
-    }
-  }
-  list.push(node)
-}
-
-function remove (list, node) {
-  let i = list.indexOf(node)
-  list.splice(i, 1)
-}
+let stackMin = []
 
 function push (node) {
   stack.push(node)
-  insert(sortList, node)
+  if (stackMin.length === 0 || stackMin[stackMin.length - 1] >= node) {
+    stackMin.push(node)
+  }
 }
 
 function pop () {
   let node = stack.pop()
-  remove(sortList, node)
+  if (stackMin[stackMin.length - 1] === node) {
+    stackMin.pop()
+  }
   return node
 }
 
@@ -32,7 +21,7 @@ function top () {
 }
 
 function min () {
-  return sortList[0]
+  return stackMin[stackMin.length - 1]
 }
 
 export default { push, pop, top, min }
