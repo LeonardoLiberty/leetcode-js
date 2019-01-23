@@ -8,12 +8,12 @@ const initJZOffer = (name) => {
         fsPromises.writeFile(
           `./src/剑指offer/${name}/${name}.js`,
           `\nexport default solution\n`
-        ),
-        fsPromises.writeFile(
-          `./src/剑指offer/${name}/${name}.test.js`,
-          // file template
-          `/* eslint-env jest */\nimport solution from './${name}.js'\n\ntest('test name', () => {\n  expect(solution(para)).toEqual()\n})\n`
         )
+        // fsPromises.writeFile(
+        //   `./src/剑指offer/${name}/${name}.test.js`,
+        //   // file template
+        //   `/* eslint-env jest */\nimport solution from './${name}.js'\n\ntest('test name', () => {\n  expect(solution(para)).toEqual()\n})\n`
+        // )
       ])
     })
     .then(() => {
