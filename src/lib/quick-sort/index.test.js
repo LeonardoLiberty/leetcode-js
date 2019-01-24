@@ -1,6 +1,8 @@
 /* eslint-env jest */
 import Sort from './index'
 
+// ----  default inplace  -------
+
 test('[]', () => {
   expect(Sort([])).toEqual([])
 })
@@ -35,4 +37,42 @@ test('[4, 3, 2, 1]', () => {
 
 test('[1, 2, 3, 4] inv', () => {
   expect(Sort([1, 2, 3, 4], (a, b) => b - a)).toEqual([4, 3, 2, 1])
+})
+
+// ----  out of place  -------
+
+test('[]', () => {
+  expect(Sort([], undefined, false)).toEqual([])
+})
+
+test('[1]', () => {
+  expect(Sort([1], undefined, false)).toEqual([1])
+})
+
+test('[1, 2]', () => {
+  expect(Sort([1, 2], undefined, false)).toEqual([1, 2])
+})
+
+test('[1, 2, 3]', () => {
+  expect(Sort([1, 2, 3], undefined, false)).toEqual([1, 2, 3])
+})
+
+test('[1, 2, 3, 4]', () => {
+  expect(Sort([1, 2, 3, 4], undefined, false)).toEqual([1, 2, 3, 4])
+})
+
+test('[4, 2, 3 ,1]', () => {
+  expect(Sort([4, 2, 3, 1], undefined, false)).toEqual([1, 2, 3, 4])
+})
+
+test('[3, 2, 2, 4]', () => {
+  expect(Sort([4, 2, 2, 3], undefined, false)).toEqual([2, 2, 3, 4])
+})
+
+test('[4, 3, 2, 1]', () => {
+  expect(Sort([4, 3, 2, 1], undefined, false)).toEqual([1, 2, 3, 4])
+})
+
+test('[1, 2, 3, 4] inv', () => {
+  expect(Sort([1, 2, 3, 4], (a, b) => b - a, false)).toEqual([4, 3, 2, 1])
 })
