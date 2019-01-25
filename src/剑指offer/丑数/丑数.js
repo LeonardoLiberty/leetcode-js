@@ -1,4 +1,4 @@
-function GetUglyNumber_Solution (index) {
+function GetUglyNumberSolution (index) {
   // 天坑边界
   if (index <= 0) return 0
   if (index === 1) return 1
@@ -17,4 +17,4 @@ function GetUglyNumber_Solution (index) {
   return stack.pop()
 }
 
-export default GetUglyNumber_Solution
+export default GetUglyNumberSolution
