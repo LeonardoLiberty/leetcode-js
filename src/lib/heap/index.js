@@ -6,7 +6,7 @@ export default class Heap {
       throw new TypeError('Cannot construct heap directly !')
     }
 
-    this.heapContainer = array
+    this.heapContainer = array.concat()
     this.compareFunction = compareFunction
     this.heapify()
   }
