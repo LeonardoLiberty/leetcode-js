@@ -1,3 +1,4 @@
+// 天坑， matrix的维度是(1, rows*cols)
 function hasPath (matrix, rows, cols, path) {
   function makeTable () {
     const table = []
@@ -10,7 +11,7 @@ function hasPath (matrix, rows, cols, path) {
   function tryPath (startX, startY, pathIndex) {
     if (pathIndex === path.length) return true
     if (startX < 0 || startX >= rows || startY < 0 || startY >= cols) return false
-    if (matrix[startX][startY] !== path[pathIndex] || visitedTable[startX][startY]) return false
+    if (matrix[startX * cols + startY] !== path[pathIndex] || visitedTable[startX][startY]) return false
     visitedTable[startX][startY] = true
     return tryPath(startX - 1, startY, pathIndex + 1) ||
       tryPath(startX + 1, startY, pathIndex + 1) ||
