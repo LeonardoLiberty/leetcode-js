@@ -4,45 +4,43 @@
  * @return {boolean}
  */
 
+// 关键思路在于
+//   如果匹配到*, 默认直接跳过(也就是让*匹配0个字母), 跳过之后之后如果再次碰到*, 可以忽略上一个*, 也就是说
+//   只记录上一次的*, 原因在于如果正确的匹配方式是让前一个*匹配更多的字母, 那么既然到了当前*的位置, 用当前的
+//   这个*匹配更多的字母也是一样的效果
+
+//   这一点大量减少了回溯的次数, 非常聪明
 var isMatch = function (s, p) {
-  function helper (i, j) {
-    const key = i + ',' + j
-    if (table[key] !== undefined) return table[key]
+  let i = 0
+  let j = 0
+  let lastMatchIndex = -1
+  let lastStarIndex = -1
 
-    if (j === p.length) {
-      table[key] = i === s.length
-    } else if (s[i] && (s[i] === p[j] || p[j] === '?')) {
-      table[key] = helper(i + 1, j + 1)
+  while (i < s.length) {
+    if (s[i] === p[j] || p[j] === '?') {
+      i++
+      j++
     } else if (p[j] === '*') {
-      // ...*** is the same as ...*
-      let lastStarIndex = j
-      while (p[lastStarIndex + 1] === '*') { lastStarIndex++ }
-
-      let nextValidIndex = i
-      while (
-        p[lastStarIndex + 1] !== '?' &&
-        nextValidIndex < s.length &&
-        s[nextValidIndex] !== p[lastStarIndex + 1]) {
-        nextValidIndex++
-      }
-
-      // p: ...* always true
-      // p: ..*a  s: ....(no a)
-      if (lastStarIndex + 1 === p.length) {
-        table[key] = true
-      } else if (nextValidIndex === s.length) {
-        table[key] = false
-      } else {
-        table[key] = helper(nextValidIndex + 1, lastStarIndex + 2) ||
-          helper(nextValidIndex + 1, lastStarIndex)
-      }
+      j++
+      lastMatchIndex = i
+      lastStarIndex = j
+    } else if (lastStarIndex !== -1) {
+      lastMatchIndex++
+      i = lastMatchIndex
+      j = lastStarIndex
     } else {
-      table[key] = false
+      return false
     }
-    return table[key]
   }
-  const table = {}
-  return helper(0, 0)
+
+  while (j < p.length) {
+    if (p[j] !== '*') {
+      return false
+    }
+    j++
+  }
+
+  return true
 }
 
 export default isMatch

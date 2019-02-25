@@ -1,5 +1,6 @@
 /* eslint-env jest */
-import solution from './wildcard-matching.js'
+// import solution from './wildcard-matching.js'
+import solution from './dp'
 
 test('aa a', () => {
   expect(solution('aa', 'a')).toEqual(false)
