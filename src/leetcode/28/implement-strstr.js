@@ -4,6 +4,11 @@ var strStr = function (haystack, needle) {
   let table = [0]
   let i = 0
   let j = 1
+
+  // 计算回看表 也用到了KMP的优化思想
+  // 即如果needle中某个开头和结尾相匹配
+  // 一旦失败可以直接跳过相匹配部分
+  // 从相匹配部分的下一个开始比较
   while (j < needle.length) {
     if (needle[i] === needle[j]) {
       table.push(++i)
